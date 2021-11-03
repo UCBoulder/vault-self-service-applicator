@@ -1,0 +1,4 @@
+groups:
+  - name: Spaces are allowed in groups
+  - name: Also - and _ are allowed
+  - name: But, commas are not

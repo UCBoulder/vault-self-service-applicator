@@ -1,0 +1,4 @@
+groups:
+  - name: customer-prod-admin
+    policies:
+      - path: "customer/prod/*"

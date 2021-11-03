@@ -1,0 +1,23 @@
+groups:
+  - name: customer-prod-admin
+    policies:
+      - path: "customer/prod/*"
+        capabilities: ['create', 'update', 'read', 'list', 'delete']
+  - name: customer-dev-admin
+    policies:
+      - path: "customer/dev/*"
+        capabilities: ['create', 'update', 'read', 'list', 'delete']
+approles:
+  - name: customer-application-prod
+    policies:
+      - path: "customer/prod/application/*"
+        capabilities: [ "read", "list" ]
+    accessor_groups:
+      - customer-prod-admin
+  - name: customer-application-dev
+    policies:
+      - path: "customer/dev/application/*"
+        capabilities: [ "read", "list" ]
+    accessor_groups:
+      - customer-prod-admin
+      - customer-dev-admin

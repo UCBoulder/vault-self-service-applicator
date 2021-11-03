@@ -1,0 +1,5 @@
+approles:
+  - name: application-prod
+    policies:
+      - path: "customer/prod/application/*"
+        capabilities: [ "read", "list" ]

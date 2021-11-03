@@ -1,0 +1,14 @@
+groups:
+  - name: customer-ops
+    policies:
+      - path: 'customer/foo/*'
+        capabilities: ['create', 'read', 'update', 'delete', 'list']
+  - name: customer-foo-dev
+    policies:
+      - path: 'customer/foo/dev'
+        capabilities: ['create', 'read', 'update', 'list']
+approles:
+  - name: customer-foo-prod
+    policies:
+      - path: 'customer/foo/prod'
+        capabilities: ['read']
