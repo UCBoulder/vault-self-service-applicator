@@ -2,7 +2,7 @@
 #
 # This script bumps the version number pinned on the FROM line of a Dockerfile
 #
-# Author: wiha1292
+# Author: @willhaines
 # Version: 1.0
 # Modified: June 18, 2020
 
