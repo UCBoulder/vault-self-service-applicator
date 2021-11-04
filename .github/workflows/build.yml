@@ -16,12 +16,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Downcase repo path
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v1.1.0
         with:
           tags: latest
           tag_with_sha: true
-          repository: ${{ github.repository }}
+          repository: ${{ env.REPO }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io

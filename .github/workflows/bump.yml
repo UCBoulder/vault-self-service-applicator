@@ -1,4 +1,4 @@
-name: Bump Base Container Version
+name: Bump Dependencies
 
 on:
   schedule:
