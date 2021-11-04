@@ -34,7 +34,7 @@ either fails.
 
 ## Customer configuration format
 
-Customers may check the validity their configuration by running:
+Customers may check the validity of their configuration by running:
 
     export ONLY_VALIDATE="True"
     export CUSTOMER_CONFIG_DIR="./my-configs"
@@ -97,7 +97,7 @@ Approle names must start with your prefix. They will be created if they do not
 already exist, otherwise their capabilities will be updated.
 
 Members of any groups listed under `accessor_groups` will be able to access
-the role-id and generate the secret-id necessary for authenticating wth the
+the role-id and generate the secret-id necessary for authenticating with the
 approle, per this [doc](https://learn.hashicorp.com/tutorials/vault/approle#step-3-get-roleid-and-secretid).
 
 ### Paths
