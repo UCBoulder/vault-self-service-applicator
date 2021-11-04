@@ -1,0 +1,5 @@
+groups:
+  - name: customer-prod-admin
+    policies:
+      - path: "sys/foobar/*"
+        capabilities: ['create', 'update', 'read', 'list', 'delete']

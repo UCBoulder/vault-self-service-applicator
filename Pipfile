@@ -1,0 +1,7 @@
+[packages]
+pyyaml = "*"
+hvac = "*"
+
+[dev-packages]
+pytest = "*"
+pylint = "*"

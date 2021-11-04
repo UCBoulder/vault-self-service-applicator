@@ -1,0 +1,15 @@
+
+groups:
+  - name: customer-ops
+    policies:
+      - path: 'customer/bar/*'
+        capabilities: ['create', 'read', 'update', 'delete', 'list']
+  - name: customer-bar-dev
+    policies:
+      - path: 'customer/bar/dev'
+        capabilities: ['create', 'read', 'update', 'list']
+approles:
+  - name: customer-bar-prod
+    policies:
+      - path: 'customer/bar/prod'
+        capabilities: ['read']

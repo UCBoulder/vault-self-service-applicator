@@ -1,0 +1,3 @@
+approles:
+  - name: customer-Underscore_and-dash-are-allowed
+  - name: customer-But spaces are not
