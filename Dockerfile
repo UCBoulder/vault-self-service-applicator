@@ -32,7 +32,7 @@ FROM base as test
 RUN pipenv install --dev --deploy
 
 COPY . .
-RUN pipenv run pylint self_service
+RUN pipenv run pylint --disable=consider-using-f-string self_service
 RUN pipenv run pylint --disable=missing-docstring,duplicate-code tests
 RUN pipenv run pytest
 

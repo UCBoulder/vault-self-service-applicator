@@ -212,7 +212,7 @@ class CustomerConfig():
 
 def parse_file(path):
     """Parse single .yml file into a CustomerConfig object."""
-    with open(path, 'r') as handle:
+    with open(path, 'r', encoding='utf-8') as handle:
         _customer_config = yaml.safe_load(handle)
         try:
             customer_config = CustomerConfig(**_customer_config)
