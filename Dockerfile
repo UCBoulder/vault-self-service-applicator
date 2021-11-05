@@ -1,26 +1,31 @@
 FROM registry.access.redhat.com/ubi8-minimal:8.4-212 as base
 
 ENV APP_ROOT=/usr/src/app \
-    PYTHON_PKG=python38 \
-    PYTHON_VERSION=3.8 \
+    PYTHON_PKG=python39 \
+    PYTHON_VERSION=3.9 \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     LANG=en_US.UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    PIPENV_VENV_IN_PROJECT=1 \
-    PATH=${APP_ROOT}/bin:$PATH
+    PIPENV_VENV_IN_PROJECT=1
+
+ENV PATH=${APP_ROOT}/.local/bin:${APP_ROOT}/bin:${PATH}
 
 # pipenv complains if you don't install which
-RUN microdnf install -y which ${PYTHON_PKG}{,-devel,-setuptools,-pip}
+RUN microdnf install -y which shadow-utils ${PYTHON_PKG}{,-devel,-setuptools,-pip}
 
+RUN useradd -d ${APP_ROOT} -M -N -u 1001 -g 0 applicator
 WORKDIR ${APP_ROOT}
+RUN chown -R 1001:0 ${APP_ROOT}
+USER 1001
+
+# For some reason, regardless of the installation location, this defaults to:
+# FileNotFoundError: [Errno 2] No such file or directory: '/usr/lib/python3.9/site-packages/pip/_vendor/certifi/cacert.pem'
+#ENV REQUESTS_CA_BUNDLE=${APP_ROOT}/.local/lib/pyhton3.9/site-packages/pip/_vendor/certifi
 
 # use pipenv to create venv in APP_ROOT
-RUN pip${PYTHON_VERSION} install pipenv && \
-    pipenv --python ${PYTHON_VERSION} && \
-    chown -R 1001:0 .
-
-USER 1001
+RUN pip${PYTHON_VERSION} install pipenv=="v2021.5.29" && \
+    pipenv --python ${PYTHON_VERSION}
 
 COPY ["Pipfile", "Pipfile.lock", "./"]
 RUN pipenv install --deploy
