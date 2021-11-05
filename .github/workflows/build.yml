@@ -5,7 +5,10 @@ on:
     branches:
       - main
     paths:
-      - "**"
+      - "self_service/**"
+      - "tests/**"
+      - "Pipfile.lock"
+      - ".github/workflows/build.yml"
   schedule:
     - cron: '17 5 * * 2'
   workflow_dispatch: {}
