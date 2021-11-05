@@ -16,11 +16,13 @@ are welcome:
 You will need to collect the desired configuration from each customer (probably
 with a git repo), then for each customer run the following:
 
-    export VAULT_TOKEN="s.YOUR_VAULT_TOKEN"
-
-    export CUSTOMER_CONFIG_DIR="./configs/customer"
-    export CUSTOMER_PREFIX="customer-secret-engine"
-    python entrypoint.py
+    docker run \
+      -v ./configs/customer:/configs \
+      -e "VAULT_ADDR=https://your.vault.server:8200" \
+      -e "VAULT_TOKEN=s.YOUR_VAULT_TOKEN" \
+      -e "CUSTOMER_CONFIG_DIR=/configs" \
+      -e "CUSTOMER_PREFIX=customer-secret-engine" \
+    ghcr.io/ucboulder/vault-self-service-applicator:latest
 
 ## Contributing
 
@@ -36,10 +38,12 @@ either fails.
 
 Customers may check the validity of their configuration by running:
 
-    export ONLY_VALIDATE="True"
-    export CUSTOMER_CONFIG_DIR="./my-configs"
-    export CUSTOMER_PREFIX="my-secret-engine"
-    python entrypoint.py
+    docker run \
+      -v ./my-configs:/my-configs \
+      -e "ONLY_VALIDATE=True" \
+      -e "CUSTOMER_CONFIG_DIR=/my-configs" \
+      -e "CUSTOMER_PREFIX=my-secret-engine" \
+    ghcr.io/ucboulder/vault-self-service-applicator:latest
 
 ### YAML files
 
