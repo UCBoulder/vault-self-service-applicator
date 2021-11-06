@@ -9,6 +9,8 @@ on:
       - "tests/**"
       - "Pipfile.lock"
       - ".github/workflows/build.yml"
+      - "Dockerfile"
+      - "entrypoint.py"
   schedule:
     - cron: '17 5 * * 2'
   workflow_dispatch: {}
