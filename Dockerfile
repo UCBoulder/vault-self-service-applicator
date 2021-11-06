@@ -46,7 +46,7 @@ RUN pipenv run pytest
 FROM base
 
 # Set pythonpath in case container runs as different user later
-ENV PYTHONPATH="${APP_ROOT}/.local/lib/python${PYTHON_VERSION}"
+ENV PYTHONPATH=${APP_ROOT}/.local/lib/python${PYTHON_VERSION}
 
 COPY . .
-CMD ["${APP_ROOT}/bin/pipenv", "run", "python", "./entrypoint.py"]
+CMD ["/usr/src/app/.local/bin/pipenv", "run", "python", "./entrypoint.py"]
