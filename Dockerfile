@@ -50,4 +50,4 @@ FROM base
 
 COPY . .
 #CMD ["/usr/src/app/.local/bin/pipenv", "run", "python", "./entrypoint.py"]
-CMD ["pipenv", "run", "python", "./entrypoint.py"]
+CMD ["/usr/src/app/.venv/bin/python", "./entrypoint.py"]
