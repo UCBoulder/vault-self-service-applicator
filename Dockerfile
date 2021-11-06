@@ -9,7 +9,7 @@ ENV APP_ROOT=/usr/src/app \
     PIP_NO_CACHE_DIR=off \
     PIPENV_VENV_IN_PROJECT=1
 
-ENV PATH=${APP_ROOT}/.local/bin:${APP_ROOT}/bin:${PATH}
+ENV PATH=${APP_ROOT}/.local/bin:${PATH}
 
 # pipenv complains if you don't install which
 RUN microdnf install -y which shadow-utils ${PYTHON_PKG}{,-devel,-setuptools,-pip}
@@ -45,5 +45,8 @@ RUN pipenv run pytest
 # Throw away dev-deps and any testing artifacts for final image
 FROM base
 
+# Set pythonpath in case container runs as different user later
+ENV PYTHONPATH="${APP_ROOT}/.local/lib/python${PYTHON_VERSION}"
+
 COPY . .
-CMD ["pipenv", "run", "python", "./entrypoint.py"]
+CMD ["${APP_ROOT}/bin/pipenv", "run", "python", "./entrypoint.py"]
