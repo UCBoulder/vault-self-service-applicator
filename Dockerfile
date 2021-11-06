@@ -50,8 +50,4 @@ FROM base
 
 COPY . .
 #CMD ["/usr/src/app/.local/bin/pipenv", "run", "python", "./entrypoint.py"]
-<<<<<<< Updated upstream
-CMD ["/usr/src/app/.venv/bin/python", "./entrypoint.py"]
-=======
 CMD ["/usr/src/app/.venv/bin/python", "/usr/src/app/entrypoint.py"]
->>>>>>> Stashed changes
