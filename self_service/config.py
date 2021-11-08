@@ -36,6 +36,7 @@ customer_prefix = _try_env("CUSTOMER_PREFIX", "")
 create_secret_paths = _try_env_bool("CREATE_PATHS", "False")
 
 vault_addr = _try_env("VAULT_ADDR", "")
+vault_token = _try_env("VAULT_TOKEN", "")
 vault_role_id = _try_env("VAULT_ROLE_ID", "")
 vault_role_secret = _try_env("VAULT_ROLE_SECRET", "")
 

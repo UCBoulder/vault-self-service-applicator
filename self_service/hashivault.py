@@ -136,7 +136,11 @@ def _mangle_kv_v2_policy(policies):
 def apply_flat_config(groups, approles, policies, paths):
     """Loop through flattened configuration and apply it to a running server."""
     client = hvac.Client(config.vault_addr)
-    client.auth_approle(config.vault_role_id, config.vault_role_secret)
+
+    client.token = config.vault_token
+    if not client.is_authenticated():
+        client.auth_approle(config.vault_role_id, config.vault_role_secret)
+
     log.debug("Authenticated with vault server {s}".format(
         s=config.vault_addr
     ))
