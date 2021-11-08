@@ -30,6 +30,7 @@ class TestApply(TestCase):
         for ptch in self.config:
             ptch.start()
         self.hvac_client = mock.Mock()
+        self.hvac_client.is_authenticated.return_value = False
         self.hvac_client.auth.ldap.create_or_update_group.return_value = mock.Mock(status_code=204)
         self.hvac_client.write.return_value = mock.Mock(status_code=204)
         self.hvac_client.sys.create_or_update_policy.return_value = mock.Mock(status_code=204)
